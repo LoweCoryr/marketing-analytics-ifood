@@ -1,0 +1,4 @@
+"0","tmp_education_cnt <- rowSums(df_customers[, c(""education_2n.Cycle"", ""education_Basic"", ""education_Graduation"", ""education_Master"", ""education_PhD"")])"
+"2","Error in rowSums(df_customers[, c(""education_2n.Cycle"", ""education_Basic"",  : 
+  'x' must be numeric
+"

@@ -1,0 +1,3 @@
+"0","df_customers %>%"
+"0","  ggplot(aes(x = marital_Together)) +"
+"0","  geom_bar()"

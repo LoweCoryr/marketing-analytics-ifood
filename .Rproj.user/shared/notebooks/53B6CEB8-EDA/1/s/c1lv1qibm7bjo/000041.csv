@@ -1,0 +1,4 @@
+"0",""
+"0","df_customers %>%"
+"0","  ggplot(aes(x = Customer_Days)) +"
+"0","  geom_histogram(bins = 70)"

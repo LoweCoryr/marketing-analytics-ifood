@@ -1,0 +1,204 @@
+---
+title: "EDA"
+author: Cory Lowe
+date: May  28, 2024
+output:  github_document
+---
+
+# IMPORT LIBRARIES
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+```
+
+# IMPORT DATA
+
+```{r}
+df_customers <- read.csv("../02_data/ifood_df.csv")
+
+df_customers <- df_customers %>%
+  mutate(AcceptedCmp1 = factor(if_else(AcceptedCmp1 == 1, "True", "False"))) %>%
+  mutate(AcceptedCmp2 = factor(if_else(AcceptedCmp2 == 1, "True", "False"))) %>%
+  mutate(AcceptedCmp3 = factor(if_else(AcceptedCmp3 == 1, "True", "False"))) %>%
+  mutate(AcceptedCmp4 = factor(if_else(AcceptedCmp4 == 1, "True", "False"))) %>%
+  mutate(AcceptedCmp5 = factor(if_else(AcceptedCmp5 == 1, "True", "False"))) %>%
+  mutate(Response = factor(if_else(Response == 1, "True", "False"))) %>%
+  mutate(Complain = factor(if_else(Complain == 1, "True", "False"))) %>%
+  mutate(education_2n.Cycle = factor(if_else(education_2n.Cycle == 1, "True", "False"))) %>%
+  mutate(education_Basic = factor(if_else(education_Basic == 1, "True", "False"))) %>%
+  mutate(education_Graduation = factor(if_else(education_Graduation == 1, "True", "False"))) %>%
+  mutate(education_Master = factor(if_else(education_Master == 1, "True", "False"))) %>%
+  mutate(education_PhD = factor(if_else(education_PhD == 1, "True", "False")))
+  
+```
+
+# INITIAL LOOK AT DATA
+
+```{r}
+summary(df_customers)
+```
+
+```{r}
+head(df_customers)
+```
+
+# CAMPAIGN SUCCESS VARIABLE
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = Response)) +
+  geom_bar(aes(fill = Response))
+```
+
+-   "Response variables" much higher proportion than "AcceptedCmp" variables.
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = AcceptedCmp1)) +
+  geom_bar(aes(fill = AcceptedCmp1))
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = AcceptedCmp2)) +
+  geom_bar(aes(fill = AcceptedCmp2))
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = AcceptedCmp3)) +
+  geom_bar(aes(fill = AcceptedCmp3))
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = AcceptedCmp4)) +
+  geom_bar(aes(fill = AcceptedCmp4))
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = AcceptedCmp5)) +
+  geom_bar(aes(fill = AcceptedCmp5))
+```
+
+# COMPLAIN
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = Complain)) +
+  geom_bar(aes(fill = Complain))
+```
+
+# CUSTOMER DAYS
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = Customer_Days)) +
+  geom_bar()
+
+df_customers %>%
+  ggplot(aes(x = Customer_Days)) +
+  geom_histogram(bins = 70)
+```
+
+-   DtCustomer variable missing. This must be the replacement one.
+-   This looks pretty consistant, meaning the campaigns were launched consistently.
+
+# EDUCATION
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = education_2n.Cycle)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = education_Basic)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = education_Graduation)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = education_Master)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = education_PhD)) +
+  geom_bar()
+```
+
+```{r eval=FALSE}
+tmp_education_cnt <- rowSums(df_customers[, c("education_2n.Cycle", "education_Basic", "education_Graduation", "education_Master", "education_PhD")])
+
+print("All educations are coded zero (doesn't have), or 1 (does have).")
+print("I need to confirm if each person has 1 and only one education level (i.e. mutually exclusive educations and no missed codings")
+print(head(tmp_education_cnt))
+
+print("Min =1 means everyone has at least 1 education")
+min(tmp_education_cnt)
+
+print("Max = 1 means everyone has at most 1 education")
+max(tmp_education_cnt)
+
+print("Therefore, we can deduce that everyone has one educational level.")
+
+rm(tmp_education_cnt)
+```
+
+*This block doesn't run, as the variables were turned into factors (at the data import stage), so when plotting, the true false factors would be on a discrete axis (vs a continuous 0 / 1 axis.)*
+
+```{r eval=FALSE}
+tmp_marital_cnt <- rowSums(df_customers[, c("marital_Divorced", "marital_Married", "marital_Single", "marital_Together", "marital_Widow")])
+
+print("All marital are coded zero (doesn't have), or 1 (does have).")
+print("I need to confirm if each person has 1 and only one marital level (i.e. mutually exclusive marital status and no missed codings")
+
+min(tmp_marital_cnt)
+
+max(tmp_marital_cnt)
+
+rm(tmp_marital_cnt)
+```
+*This block doesn't run, as the variables were turned into factors (at the data import stage), so when plotting, the true false factors would be on a discrete axis (vs a continuous 0 / 1 axis.)*
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = marital_Divorced)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = marital_Married)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = marital_Single)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = marital_Together)) +
+  geom_bar()
+```
+
+```{r}
+df_customers %>%
+  ggplot(aes(x = marital_Widow)) +
+  geom_bar()
+```

@@ -1,0 +1,1 @@
+{"frames":[{"func":"rowSums(df_customers[, c(\"education_2n.Cycle\", \"education_Basic\", \n    \"education_Graduation\", \"education_Master\", \"education_PhD\")])","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in rowSums(df_customers[, c(\"education_2n.Cycle\", \"education_Basic\",  : \n  'x' must be numeric\n"}

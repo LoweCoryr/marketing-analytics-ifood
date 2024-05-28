@@ -1,0 +1,3 @@
+"0","df_customers %>%"
+"0","  ggplot(aes(x = AcceptedCmp2)) +"
+"0","  geom_bar(aes(fill = AcceptedCmp2))"

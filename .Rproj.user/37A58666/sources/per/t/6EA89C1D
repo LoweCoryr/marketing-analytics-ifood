@@ -1,0 +1,33 @@
+{
+    "id": "6EA89C1D",
+    "path": "C:/Users/corylowe/OneDrive/projects/marketing-analytics-kaggle/03_notebooks/EDA.Rmd",
+    "project_path": "03_notebooks/EDA.Rmd",
+    "type": "r_markdown",
+    "hash": "4274066940",
+    "contents": "",
+    "dirty": false,
+    "created": 1716837866217.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "173,194",
+        "scrollLine": "172",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "rmdVisualModeLocation": "2797:9864",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1716912815,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1716912815352,
+    "read_only": false,
+    "read_only_alternatives": []
+}
